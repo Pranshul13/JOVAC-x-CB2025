@@ -8,5 +8,5 @@ for(let i=1;i<=10;i++){
     
     setInterval(()=>{
         console.log(mul);
-    },2000);
+    },i * 2000);
 }
