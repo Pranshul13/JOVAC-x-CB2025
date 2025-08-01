@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Blog Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <button onclick="location.href='home.html'">Home</button>
+  <div class="container">
+    <h1>All Blog Posts</h1>
+
+    <div id="auth-header">
+      <button onclick="location.href='index.html'">Login / Signup</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div id="welcome-user"></div>
+
+    <div id="all-posts"></div>
+  </div>
+
+  <script>
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const currentUser = localStorage.getItem('loggedInUser');
+    const container = document.getElementById('all-posts');
+
+    if (currentUser) {
+      document.getElementById('welcome-user').innerText = `Welcome, ${currentUser}`;
+    }
+
+    if (posts.length === 0) {
+      container.innerHTML = "<p>No posts yet.</p>";
+    } else {
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.innerHTML = `
+          <h2><a href="blog.html?id=${post.id}">${post.title}</a></h2>
+          <p><strong>By:</strong> ${post.author}</p>
+          <hr />
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem('loggedInUser');
+      location.reload();
+    }
+  </script>
+</body>
+</html>

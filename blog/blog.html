@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button onclick="location.href='home.html'">Home</button>
+  <div class="container">
+    <h1 id="title"></h1>
+    <p id="author"></p>
+    <p id="content"></p>
+    <button id="delete-btn" onclick="deletePost()">Delete</button>
+    <a href="index.html">Back</a>
+  </div>
+
+  <script>
+    const postId = new URLSearchParams(window.location.search).get('id');
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const post = posts.find(p => p.id == postId);
+
+    if (post) {
+      document.getElementById('title').innerText = post.title;
+      document.getElementById('author').innerText = 'By: ' + post.author;
+      document.getElementById('content').innerText = post.content;
+
+      const currentUser = localStorage.getItem('loggedInUser');
+      if (currentUser !== post.author) {
+        document.getElementById('delete-btn').style.display = 'none';
+      }
+    }
+
+    function deletePost() {
+      const newPosts = posts.filter(p => p.id != postId);
+      localStorage.setItem('posts', JSON.stringify(newPosts));
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
