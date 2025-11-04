@@ -1,0 +1,38 @@
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .expense-form {
+    grid-template-columns: 1fr;
+  }
+}
+/* For mobile screens */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    justify-content: space-around;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .landing-main h1 {
+    font-size: 2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
