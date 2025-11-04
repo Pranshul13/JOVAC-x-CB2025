@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Expense Tracker</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">💰 ExpenseTracker</div>
+      <nav>
+        <a href="dashboard.html" class="active">🏠 Dashboard</a>
+        <a href="reports.html" class="active">📊 Reports</a>
+        
+        <a href="add-expense.html">Add Expense</a>
+        <a href="categories.html">Categories</a>
+        <a href="split-expenses.html">Split Expenses</a>
+        <a href="budget.html">Budget</a>
+        <a href="recurring.html">Recurring</a>
+        <a href="receipts.html">Receipts</a>
+        
+        
+        
+        <a href="#">⚙ Settings</a>
+        <a href="index.html">🚪 Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="topbar">
+        <h2>Welcome, User 👋</h2>
+      </header>
+
+      <section class="dashboard">
+        <h2>My Expenses</h2>
+        <form class="expense-form">
+          <input type="text" placeholder="Expense Title" required>
+          <input type="number" placeholder="Amount" required>
+          <select>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+          </select>
+          <button class="btn primary">Add Expense</button>
+        </form>
+
+        <div class="expense-list">
+          <h3>Expense History</h3>
+          <ul>
+            <li>🍕 Food - $20</li>
+            <li>🚌 Travel - $50</li>
+            <li>🛍️ Shopping - $100</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+  const API_URL = "http://localhost:5000/api/expenses";
+
+  async function loadExpenses() {
+    const response = await fetch(API_URL);
+    const expenses = await response.json();
+
+    const tableBody = document.querySelector("table tbody");
+    tableBody.innerHTML = "";
+    expenses.forEach(exp => {
+      tableBody.innerHTML += `
+        <tr>
+          <td>${exp.title}</td>
+          <td>${exp.category}</td>
+          <td>${exp.amount}</td>
+          <td>${exp.date}</td>
+        </tr>
+      `;
+    });
+  }
+
+  loadExpenses();
+</script>
+
+</body>
+</html>
