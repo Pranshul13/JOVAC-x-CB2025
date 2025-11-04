@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - SpendTrackr</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">💰 SpendTrackr</div>
+      <nav>
+        
+        <a href="add-expense.html">Add Expense</a>
+        <a href="categories.html">Categories</a>
+        <a href="split-expenses.html">Split Expenses</a>
+        <a href="budget.html">Budget</a>
+        <a href="recurring.html">Recurring</a>
+        <a href="receipts.html">Receipts</a>
+        <a href="reports.html" class="active">Reports</a>
+        
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="topbar">
+        <h2>Reports</h2>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="report-cards">
+        <div class="card">
+          <h3>Total Expenses</h3>
+          <p>₹ 25,000</p>
+        </div>
+        <div class="card">
+          <h3>This Month</h3>
+          <p>₹ 8,200</p>
+        </div>
+        <div class="card">
+          <h3>Top Category</h3>
+          <p>Food & Drinks</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters">
+        <label for="date-filter">Date:</label>
+        <select id="date-filter">
+          <option>Last 7 days</option>
+          <option>Last 30 days</option>
+          <option>This Year</option>
+        </select>
+
+        <label for="category-filter">Category:</label>
+        <select id="category-filter">
+          <option>All</option>
+          <option>Food</option>
+          <option>Travel</option>
+          <option>Shopping</option>
+        </select>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="charts">
+        <div class="chart-placeholder">[ Pie Chart Placeholder ]</div>
+        <div class="chart-placeholder">[ Bar Chart Placeholder ]</div>
+      </div>
+
+      <!-- Recent Reports Table -->
+      <div class="dashboard">
+        <h3>Recent Expense Summary</h3>
+        <table class="report-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01 Sep 2025</td>
+              <td>Food</td>
+              <td>₹ 500</td>
+            </tr>
+            <tr>
+              <td>29 Aug 2025</td>
+              <td>Travel</td>
+              <td>₹ 1,200</td>
+            </tr>
+            <tr>
+              <td>28 Aug 2025</td>
+              <td>Shopping</td>
+              <td>₹ 2,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
