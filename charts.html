@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Expense Charts</title>
+<link rel="stylesheet" href="main1.css">
+
+<!-- Chart JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+.chart-container {
+  width: 45%;
+  min-height: 350px;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.charts-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <h3>Expense Tracker - Charts</h3>
+  <button onclick="window.location.href='index.html'">Back</button>
+</nav>
+
+<section>
+  <div class="charts-wrapper">
+
+    <div class="chart-container">
+      <h2>Expense by Category (Pie Chart)</h2>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+      <h2>Income vs Expense (Bar Chart)</h2>
+      <canvas id="barChart"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+if (!user) {
+  alert("Please login first!");
+  window.location.href = "login.html";
+}
+
+// Load transactions and prepare chart data
+async function loadCharts() {
+  const res = await fetch("http://localhost:5000/get-transactions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: user.email })
+  });
+
+  const result = await res.json();
+  if (!result.success) return alert("Failed to load data");
+
+  const transactions = result.data;
+
+  // --- Pie Chart Data: Expense by Category ---
+  const categoryTotals = {};
+  transactions.forEach(t => {
+    if (t.type === "expense") {
+      categoryTotals[t.category] = (categoryTotals[t.category] || 0) + Number(t.amount);
+    }
+  });
+
+  const pieLabels = Object.keys(categoryTotals);
+  const pieValues = Object.values(categoryTotals);
+
+  new Chart(document.getElementById('pieChart'), {
+    type: 'pie',
+    data: {
+      labels: pieLabels,
+      datasets: [{
+        data: pieValues
+      }]
+    }
+  });
+
+  // --- Bar Chart Data: Total Income vs Expense ---
+  let income = 0, expense = 0;
+  transactions.forEach(t => {
+    if (t.type === "income") income += Number(t.amount);
+    else expense += Number(t.amount);
+  });
+
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ["Income", "Expense"],
+      datasets: [{
+        data: [income, expense]
+      }]
+    }
+  });
+}
+
+loadCharts();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "123",
+      "email": "admin@example.com"
+    },
+    {
+      "username": "shresth",
+      "email": "sresth.kvalld123@gmail.com",
+      "password": "$2b$10$Mv1M5WqBe1bZFLcMKzyPoeaXyW5yRYIXTSsaZnt.CRVhgHIbZTGEy"
+    },
+    {
+      "username": "Pranshul Sharma",
+      "email": "pranshulsharmaalg@gmail.com",
+      "password": "$2b$10$HOqPg2oi9pl6RrdjDBdI3usLM1DFP2MHaGTdZ24mzpTqTTRH0dmGG"
+    }
+  ],
+  "transactions": [
+    {
+      "_id": "1763444485440",
+      "email": "admin@example.com",
+      "amount": 12000,
+      "type": "expense",
+      "category": "Business",
+      "status": "Completed",
+      "date": "2025-11-18T05:41:25.440Z"
+    },
+    {
+      "_id": "1763447790063",
+      "email": "admin@example.com",
+      "amount": 20000,
+      "type": "income",
+      "category": "Business",
+      "status": "Completed",
+      "date": "2025-11-18T06:36:30.063Z"
+    },
+    {
+      "_id": "1763664459665",
+      "email": "sresth.kvalld123@gmail.com",
+      "amount": 100000,
+      "type": "income",
+      "category": "Salary",
+      "status": "Completed",
+      "date": "2025-11-20T18:47:39.665Z"
+    },
+    {
+      "_id": "1763704672422",
+      "email": "pranshulsharmaalg@gmail.com",
+      "amount": 10000,
+      "type": "income",
+      "category": "Salary",
+      "status": "Completed",
+      "date": "2025-11-21T05:57:52.422Z"
+    },
+    {
+      "_id": "1763704696665",
+      "email": "pranshulsharmaalg@gmail.com",
+      "amount": 2000,
+      "type": "expense",
+      "category": "Shopping",
+      "status": "Completed",
+      "date": "2025-11-21T05:58:16.665Z"
+    },
+    {
+      "_id": "1763704718321",
+      "email": "pranshulsharmaalg@gmail.com",
+      "amount": 500,
+      "type": "expense",
+      "category": "Food",
+      "status": "Completed",
+      "date": "2025-11-21T05:58:38.321Z"
+    },
+    {
+      "_id": "1763704743157",
+      "email": "pranshulsharmaalg@gmail.com",
+      "amount": 200,
+      "type": "expense",
+      "category": "Business",
+      "status": "Pending",
+      "date": "2025-11-21T05:59:03.157Z"
+    }
+  ]
+}

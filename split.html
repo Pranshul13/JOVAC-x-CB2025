@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spend Splitter</title>
+<link rel="stylesheet" href="main1.css">
+
+<style>
+/* Main Container */
+.split-container {
+  width: 60%;
+  margin: auto;
+  padding: 25px;
+  background: #BEB2D5;
+  border-radius: 18px;
+  margin-top: 35px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Inputs */
+.split-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 20px;
+  border: 1.5px solid #aaa;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.split-container input:focus {
+  border-color: #5F4B8B;
+  box-shadow: 0 0 10px rgba(95,75,139,0.4);
+}
+
+/* Stylish Buttons */
+.btn {
+  padding: 12px 20px;
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+/* Back Button */
+.back-btn {
+  background: linear-gradient(135deg, #ff6a6a, #b71c1c);
+  box-shadow: 0 4px 10px rgba(183, 28, 28, 0.4);
+}
+
+.back-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 14px rgba(183,28,28,0.55);
+}
+
+/* Split Button */
+.primary-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #5F4B8B, #8E7AB5);
+  box-shadow: 0 4px 12px rgba(95,75,139,0.35);
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(95,75,139,0.55);
+}
+
+/* Result Box */
+.result-box {
+  color: black;
+  background: #F7F4FF;
+  padding: 20px;
+  border-left: 6px solid #5F4B8B;
+  border-radius: 14px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(95,75,139,0.25);
+}
+</style>
+
+
+
+</head>
+<body>
+
+<nav>
+  <h3>4 Person Expense Split</h3>
+  <button class="btn back-btn" onclick="window.location.href='index.html'">⟵ Back</button>
+
+</nav>
+
+<section>
+  <div class="split-container">
+    <h2>Enter Expense Paid by Each Person</h2>
+
+    <label>Person 1</label><input type="number" id="p1" placeholder="Amount paid by Person 1">
+    <label>Person 2</label><input type="number" id="p2" placeholder="Amount paid by Person 2">
+    <label>Person 3</label><input type="number" id="p3" placeholder="Amount paid by Person 3">
+    <label>Person 4</label><input type="number" id="p4" placeholder="Amount paid by Person 4">
+
+    <button class="btn primary-btn" onclick="calculateSplit()">Split Expense </button>
+
+
+    <div id="result" class="result-box"></div>
+  </div>
+</section>
+
+<script>
+function calculateSplit() {
+  const a = Number(document.getElementById("p1").value) || 0;
+  const b = Number(document.getElementById("p2").value) || 0;
+  const c = Number(document.getElementById("p3").value) || 0;
+  const d = Number(document.getElementById("p4").value) || 0;
+
+  const total = a + b + c + d;
+  const share = total / 4;
+
+  const balances = [
+    { name: "Person 1", diff: a - share },
+    { name: "Person 2", diff: b - share },
+    { name: "Person 3", diff: c - share },
+    { name: "Person 4", diff: d - share },
+  ];
+
+  let output = `<h3>Total: ₹${total.toLocaleString('en-IN')}</h3>
+                <h4>Each should pay: ₹${share.toLocaleString('en-IN')}</h4><br>`;
+
+  balances.forEach(p => {
+    if (p.diff > 0) output += `${p.name} should receive ₹${p.diff.toLocaleString('en-IN')}<br>`;
+    else if (p.diff < 0) output += `${p.name} should pay ₹${(-p.diff).toLocaleString('en-IN')}<br>`;
+    else output += `${p.name} is settled ✔<br>`;
+  });
+
+  document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
